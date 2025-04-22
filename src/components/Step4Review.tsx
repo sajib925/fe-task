@@ -52,7 +52,7 @@ export default function Step4Review() {
             variant="outline"
           />
           <Button
-            label="Next Step"
+            label="Submit"
             onClick={handleSubmit}
             variant="primary"
           />

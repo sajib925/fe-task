@@ -1,54 +1,51 @@
-# React + TypeScript + Vite
+# Task - Multi-Step Form Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A multi-step form application built using React, TypeScript, and other modern libraries. This project implements form handling with React Hook Form, state management with Zustand, and utilizes TailwindCSS for styling.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Multi-Step Form**: The form is divided into 3-4 steps/pages.
+    - **Step 1**: Name (required), Email (required)
+    - **Step 2**: Address (required), Phone Number (required)
+    - **Step 3**: Multi-select items (e.g., categories, preferences, etc.)
+    - **Step 4**: Review all entered data before submission
+2. **Validation**: Each field is required and validated before moving to the next step.
+    - Name, Address, and Phone must not be empty.
+    - Email should be a valid format.
+    - Phone should be numeric.
+3. **Form Submission**: After submitting the form:
+    - Display the submitted data in a list or card view.
+    - Each submission should appear below the form.
+4. **Save Form Progress**: 
+    - If the user refreshes the page before submitting, the form retains the entered data.
+    - Users can continue from where they left off by storing the data in `localStorage`.
 
-## Expanding the ESLint configuration
+### Bonus Features:
+- **Reset/Discard** button to clear the form and `localStorage`.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tools/Libraries Used
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **React**: JavaScript library for building user interfaces.
+- **TypeScript**: A superset of JavaScript that adds static types.
+- **React Hook Form**: Form management library to handle form validation and state.
+- **Tailwind CSS**: A utility-first CSS framework for building responsive, custom designs.
+- **Zustand**: A fast, small state management tool for React.
+- **clsx**: Utility for constructing `className` strings conditionally.
+- **react-toastify**: Library for showing toast notifications.
+- **react-multi-select-component**: Multi-select dropdown component for React.
+- **tailwind-merge**: Utility to merge TailwindCSS classnames.
+- **Vite**: A fast, next-generation build tool for modern web projects.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Setup and Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. Clone the repository
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+```bash
+git clone https://github.com/sajib925/fe-task
+
+cd fe-task
+
+pnpm i
+
+pnpm dev
+
