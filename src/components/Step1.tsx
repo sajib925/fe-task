@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form"
 import { useFormStore } from "../store/formStore"
-import { toast } from "react-toastify"
+import Button from "./Button"
+import Input from "./Input"
 
 export default function Step1() {
   const {
@@ -12,16 +13,13 @@ export default function Step1() {
   const { setFormData, setStep } = useFormStore()
 
   const handleNext = async () => {
-    // Validate the form fields before proceeding
     const isValid = await trigger(["name", "email"])
 
     if (isValid) {
       const values = getValues()
       setFormData({ name: values.name, email: values.email })
       setStep(2)
-    } else {
-      toast.error("Please fill out all required fields correctly.")
-    }
+    } 
   }
 
   return (
@@ -31,32 +29,28 @@ export default function Step1() {
       <p className="text-sm text-gray-500">Please provide your name and email address.</p>
 
       <div className="space-y-4">
-        <input
-          {...register("name", { required: "Name is required" })}
+        <Input
           placeholder="Full Name"
-          className="w-full p-3 border border-gray-200 rounded-xl bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          register={register("name", { required: "Name is required" })}
+          error={errors.name?.message as string}
         />
-        {errors.name && <p className="text-sm text-red-500">{String(errors.name.message)}</p>}
-
-        <input
-          {...register("email", {
+        <Input
+          placeholder="Email Address"
+          type="email"
+          register={register("email", {
             required: "Email is required",
             pattern: { value: /\S+@\S+\.\S+/, message: "Invalid email" },
           })}
-          placeholder="Email Address"
-          className="w-full p-3 border border-gray-200 rounded-xl bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          error={errors.email?.message as string}
         />
-        {errors.email && <p className="text-sm text-red-500">{String(errors.email.message)}</p>}
       </div>
 
       <div className="flex justify-end pt-4">
-        <button
-          type="button"
+        <Button
+          label="Next Step"
           onClick={handleNext}
-          className="px-5 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 font-medium transition"
-        >
-          Next Step
-        </button>
+          variant="primary"
+        />
       </div>
     </div>
   )

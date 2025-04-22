@@ -19,13 +19,12 @@ interface FormState {
   resetForm: () => void
 }
 
-// Use Zustand's persist middleware to automatically handle localStorage
 export const useFormStore = create<FormState>()(
   persist(
     (set, get) => ({
       step: 1,
       formData: {},
-      submissions: [],
+      submissions: [], 
 
       setStep: (step) => set({ step }),
 
@@ -36,7 +35,6 @@ export const useFormStore = create<FormState>()(
 
       submitForm: () => {
         const { formData, submissions } = get()
-        // Ensure all required fields are present
         if (
           formData.name &&
           formData.email &&
@@ -53,15 +51,15 @@ export const useFormStore = create<FormState>()(
         }
       },
 
-      resetForm: () => set({ formData: {}, step: 1 }),
+      resetForm: () => set({ formData: {}, submissions:[], step: 1 }),
     }),
     {
-      name: "form-storage", // unique name for localStorage
+      name: "form-storage", 
       partialize: (state) => ({
         formData: state.formData,
         step: state.step,
         submissions: state.submissions,
-      }), // only persist these fields
+      }), 
     },
   ),
 )

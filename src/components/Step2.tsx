@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form"
 import { useFormStore } from "../store/formStore"
-import { toast } from "react-toastify"
+import Button from "./Button"
+import Input from "./Input"
 
 export default function Step2() {
   const {
@@ -12,16 +13,13 @@ export default function Step2() {
   const { setFormData, setStep } = useFormStore()
 
   const handleNext = async () => {
-    // Validate the form fields before proceeding
     const isValid = await trigger(["address", "phone"])
 
     if (isValid) {
       const values = getValues()
       setFormData({ address: values.address, phone: values.phone })
       setStep(3)
-    } else {
-      toast.error("Please fill out all required fields correctly.")
-    }
+    } 
   }
 
   const handleBack = () => setStep(1)
@@ -33,39 +31,34 @@ export default function Step2() {
       <p className="text-sm text-gray-500">We need your contact information.</p>
 
       <div className="space-y-4">
-        <input
-          {...register("address", { required: "Address is required" })}
+        <Input
           placeholder="Full Address"
-          className="w-full p-3 border border-gray-200 rounded-xl bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          register={register("address", { required: "Address is required" })}
+          error={errors.address?.message as string}
         />
-        {errors.address && <p className="text-sm text-red-500">{String(errors.address.message)}</p>}
 
-        <input
-          {...register("phone", {
+        <Input
+          placeholder="Phone Number"
+          register={register("phone", {
             required: "Phone is required",
             pattern: { value: /^[0-9]+$/, message: "Phone must be numeric" },
           })}
-          placeholder="Phone Number"
-          className="w-full p-3 border border-gray-200 rounded-xl bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          error={errors.phone?.message as string}
         />
-        {errors.phone && <p className="text-sm text-red-500">{String(errors.phone.message)}</p>}
       </div>
 
       <div className="flex items-center justify-between pt-4">
-        <button
-          type="button"
+        <Button
+          label="Previous Step"
           onClick={handleBack}
-          className="px-5 py-2 rounded-full border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium transition"
-        >
-          Previous Step
-        </button>
-        <button
-          type="button"
+          variant="outline"
+        />
+
+        <Button
+          label="Next Step"
           onClick={handleNext}
-          className="px-5 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 font-medium transition"
-        >
-          Next Step
-        </button>
+          variant="primary"
+        />
       </div>
     </div>
   )

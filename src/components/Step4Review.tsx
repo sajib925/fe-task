@@ -1,8 +1,7 @@
-"use client"
-
 import { useState } from "react"
 import { useFormStore } from "../store/formStore"
 import { toast } from "react-toastify"
+import Button from "./Button"
 
 export default function Step4Review() {
   const { formData, setStep, submitForm } = useFormStore()
@@ -13,7 +12,7 @@ export default function Step4Review() {
     setOpen(false)
     toast.success("Your form has been successfully submitted!", {
       position: "top-center",
-      autoClose: 1000,
+      autoClose: 2000,
     })
   }
 
@@ -44,21 +43,19 @@ export default function Step4Review() {
         </div>
 
         <div className="flex justify-between pt-4">
-          <button
+          <Button
+            label="Previous Step"
             onClick={() => {
               setStep(3)
               setOpen(false)
             }}
-            className="px-5 py-2 rounded-full border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium transition"
-          >
-            Back
-          </button>
-          <button
+            variant="outline"
+          />
+          <Button
+            label="Next Step"
             onClick={handleSubmit}
-            className="px-5 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 font-medium transition"
-          >
-            Submit
-          </button>
+            variant="primary"
+          />
         </div>
       </div>
     </div>

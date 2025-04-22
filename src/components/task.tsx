@@ -6,32 +6,22 @@ import Step2 from "./Step2"
 import Step3 from "./Step3"
 import Step4Review from "./Step4Review"
 import SubmissionList from "./SubmissionList"
-import { toast, ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import { toast } from "react-toastify"
 
 export default function FormContainer() {
   const methods = useForm()
   const { step, resetForm, formData, submissions } = useFormStore()
 
-  // Set form values from stored data when component mounts
   useEffect(() => {
     if (Object.keys(formData).length > 0) {
-      // Set the form values from the stored data
       methods.reset(formData)
-
-      // Show a toast notification that form progress was restored
-      if (step > 1) {
-        toast.info("Your form progress has been restored. You can continue where you left off.")
-      }
     }
   }, [formData, methods, step])
 
   const handleReset = () => {
     if (submissions.length > 0) {
-      // Reset the Zustand store state
       resetForm()
 
-      // Reset the React Hook Form state
       methods.reset({
         name: "",
         email: "",
@@ -39,10 +29,15 @@ export default function FormContainer() {
         phone: "",
         items: [],
       })
-
-      toast.info("The form has been reset successfully.")
+      toast.info("The form has been reset successfully.", {
+        position: "top-center",
+        autoClose: 2000,
+      })
     } else {
-      toast.warning("You can only reset after submitting the form.")
+      toast.error("You can only reset after submitting the form.", {
+        position: "top-center",
+        autoClose: 2000,
+      })
     }
   }
 
@@ -79,7 +74,6 @@ export default function FormContainer() {
       <hr className="my-8 border-gray-200" />
 
       <SubmissionList />
-      <ToastContainer />
     </div>
   )
 }
