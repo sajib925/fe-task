@@ -47,10 +47,10 @@ export default function Step1() {
 
       <div className="flex justify-end pt-4">
         <Button
-          label="Next Step"
+          
           onClick={handleNext}
           variant="primary"
-        />
+        >Next Step</Button>
       </div>
     </div>
   )

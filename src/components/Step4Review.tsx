@@ -44,18 +44,16 @@ export default function Step4Review() {
 
         <div className="flex justify-between pt-4">
           <Button
-            label="Previous Step"
             onClick={() => {
               setStep(3)
               setOpen(false)
             }}
             variant="outline"
-          />
+          >Previous Step</Button>
           <Button
-            label="Submit"
             onClick={handleSubmit}
             variant="primary"
-          />
+          >Submit</Button>
         </div>
       </div>
     </div>

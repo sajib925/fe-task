@@ -4,7 +4,7 @@ A multi-step form application built using React, TypeScript, and other modern li
 
 ## Features
 
-1. **Multi-Step Form**: The form is divided into 3-4 steps/pages.
+1. **Multi-Step Form**: The form is divided into 3-4 steps
     - **Step 1**: Name (required), Email (required)
     - **Step 2**: Address (required), Phone Number (required)
     - **Step 3**: Multi-select items (e.g., categories, preferences, etc.)
@@ -13,9 +13,11 @@ A multi-step form application built using React, TypeScript, and other modern li
     - Name, Address, and Phone must not be empty.
     - Email should be a valid format.
     - Phone should be numeric.
-3. **Form Submission**: After submitting the form:
-    - Display the submitted data in a list or card view.
-    - Each submission should appear below the form.
+3. **Form Submission**: 
+  before submitting the form:
+    - Displaying the submitted data in a popup.
+  After submitting the form:
+    - Displaying the submitted data in a card view.
 4. **Save Form Progress**: 
     - If the user refreshes the page before submitting, the form retains the entered data.
     - Users can continue from where they left off by storing the data in `localStorage`.

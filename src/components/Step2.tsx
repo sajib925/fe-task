@@ -49,16 +49,15 @@ export default function Step2() {
 
       <div className="flex items-center justify-between pt-4">
         <Button
-          label="Previous Step"
           onClick={handleBack}
           variant="outline"
-        />
+        >Previous Step</Button>
 
         <Button
-          label="Next Step"
+          
           onClick={handleNext}
           variant="primary"
-        />
+        >Next Step</Button>
       </div>
     </div>
   )

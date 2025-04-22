@@ -82,8 +82,8 @@ export default function Step3() {
       </div>
 
       <div className="flex justify-between pt-4">
-        <Button label="Previous Step" onClick={handleBack} variant="outline" />
-        <Button label="Next Step" onClick={handleNext} variant="primary" />
+        <Button onClick={handleBack} variant="outline" >Previous Step</Button>
+        <Button onClick={handleNext} variant="primary">Next Step</Button>
       </div>
     </div>
   )

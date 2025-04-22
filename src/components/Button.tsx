@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type ButtonProps = {
   type?: 'button' | 'submit' | 'reset';
-  label: string;
+  children: ReactNode;
   onClick?: () => void;
   variant?: 'primary' | 'outline';
   disabled?: boolean;
@@ -12,7 +12,7 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({
   type = 'button',
-  label,
+  children,
   onClick,
   variant = 'primary',
   disabled = false,
@@ -39,7 +39,7 @@ const Button: React.FC<ButtonProps> = ({
       className={finalClassName}
       disabled={disabled}
     >
-      {label}
+      {children}
     </button>
   );
 };

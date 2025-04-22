@@ -7,6 +7,7 @@ import Step3 from "./Step3"
 import Step4Review from "./Step4Review"
 import SubmissionList from "./SubmissionList"
 import { toast } from "react-toastify"
+import Button from "./Button"
 
 export default function FormContainer() {
   const methods = useForm()
@@ -63,12 +64,7 @@ export default function FormContainer() {
       </FormProvider>
 
       <div className="mt-8 text-center">
-        <button
-          className="px-4 py-2 rounded-lg text-red-500 border border-red-200 hover:bg-red-50 transition"
-          onClick={handleReset}
-        >
-          Reset Form
-        </button>
+        <Button onClick={handleReset} variant="outline">Reset Form</Button>
       </div>
 
       <hr className="my-8 border-gray-200" />
